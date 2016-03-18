@@ -24,7 +24,7 @@ a {
 .app-header {
   padding: 10px;
   color: #FFFFFF;
-  background-color: #00BCD4;
+  background-color: teal;
   height: 80px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -64,7 +64,7 @@ a {
 
 .app-footer {
   height: 80px;
-  background-color: #00BCD4;
+  background-color: teal;
   border-top: 1px solid #e6e6e6;
   -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
