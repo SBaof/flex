@@ -9,7 +9,7 @@ function handleError(err) {
   this.emit('end');
 }
 
-gulp.task('sync', ['build', 'sass'], function() {
+gulp.task('sync', ['build', 'sass', 'copy'], function() {
   browserSync({
     server: {
       baseDir: '..'
@@ -35,16 +35,15 @@ gulp.task('sass', function() {
       .pipe(browserSync.reload({stream: true}));
 });
 
-/*
 gulp.task('copy', function() {
-  gulp.src('index.html')
+  return gulp.src('js/main.js', {base: '.'})
       .pipe(gulp.dest('..'));
-})
-*/
+});
 
 gulp.task('watch', function() {
   gulp.watch(['**/*.html'], ['rebuild']);
   gulp.watch(['styles/*.scss'], ['sass']);
+  gulp.watch(['js/main.js'], ['cp']);
 });
 
 gulp.task('default', ['sync', 'watch']);
