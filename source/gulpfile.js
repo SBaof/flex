@@ -43,7 +43,7 @@ gulp.task('copy', function() {
 gulp.task('watch', function() {
   gulp.watch(['**/*.html'], ['rebuild']);
   gulp.watch(['styles/*.scss'], ['sass']);
-  gulp.watch(['js/main.js'], ['copy']);
+  gulp.watch(['js/main.js', 'assets/*'], ['copy']);
 });
 
 gulp.task('default', ['sync', 'watch']);
