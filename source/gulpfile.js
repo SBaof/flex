@@ -36,14 +36,14 @@ gulp.task('sass', function() {
 });
 
 gulp.task('copy', function() {
-  return gulp.src('js/main.js', {base: '.'})
+  return gulp.src(['js/main.js', 'assets/*'], {base: '.'})
       .pipe(gulp.dest('..'));
 });
 
 gulp.task('watch', function() {
   gulp.watch(['**/*.html'], ['rebuild']);
   gulp.watch(['styles/*.scss'], ['sass']);
-  gulp.watch(['js/main.js'], ['cp']);
+  gulp.watch(['js/main.js'], ['copy']);
 });
 
 gulp.task('default', ['sync', 'watch']);
