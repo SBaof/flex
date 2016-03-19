@@ -3,6 +3,8 @@ var sass = require('gulp-sass');
 var prefix = require('gulp-autoprefixer');
 var wrap = require('gulp-wrap');
 var browserSync = require('browser-sync');
+var imagemin = require('gulp-imagemin');
+var pngquant = require('imagemin-pngquant');
 
 function handleError(err) {
   console.log(err.toString());
@@ -15,6 +17,16 @@ gulp.task('sync', ['build', 'sass', 'copy'], function() {
       baseDir: '..'
     }
   });
+});
+
+gulp.task('imagemin', function() {
+  gulp.src('assets/*')
+      .pipe(imagemin({
+        progressive: true,
+        svgPlugins: [{removeViewBox: false}],
+        use: [pngquant()]
+      }))
+      .pipe(gulp.dest('assets'));
 });
 
 gulp.task('build', function() {
@@ -43,6 +55,7 @@ gulp.task('copy', function() {
 gulp.task('watch', function() {
   gulp.watch(['**/*.html'], ['rebuild']);
   gulp.watch(['styles/*.scss'], ['sass']);
+  gulp.watch(['assets/*'], ['imagemin']);
   gulp.watch(['js/main.js', 'assets/*'], ['copy']);
 });
 
